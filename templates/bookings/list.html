@@ -7,6 +7,9 @@
     <div class="card my-5">
         <div class="card-body">
             <h4>Item - {{ booking.item.name }}</h4>
+            {% if booking.additional_item %}
+            <h4>Additional Item - {{ booking.additional_item.name }}</h4>
+            {% endif %}
             <p>Status - {{ booking.get_status_display }}</p>
         </div>
     </div>

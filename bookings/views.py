@@ -17,7 +17,7 @@ def booking_create(request):
     if request.method == 'POST':
         item_id = request.POST['item']
         slot_id = request.POST['slot']
-        additional_item_id = request.POST.get('additional_item_id', None)
+        additional_item_id = request.POST.get('additional_item', None)
         
         slot = Slot.objects.get(id=slot_id)
 

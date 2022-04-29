@@ -10,7 +10,7 @@
             <select class="form-select" aria-label="Default select example" name="item" required>
                 <option selected>Open this to select item</option>
                 {% for item in items %}
-                <option value="{{ item.id }}">{{ item.name }}</option>
+                <option value="{{ item.id }}">{{ item.name }} - Rs {{ item.price }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -20,7 +20,7 @@
             <select class="form-select" aria-label="Default select example" name="additional_item" required>
                 <option selected>Open this to select item</option>
                 {% for item in items %}
-                <option value="{{ item.id }}">{{ item.name }}</option>
+                <option value="{{ item.id }}">{{ item.name }} - Rs {{ item.price }}</option>
                 {% endfor %}
             </select>
         </div>

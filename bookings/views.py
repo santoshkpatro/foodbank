@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.contrib import messages
 from core.models import Booking, Item, Slot
 
 
@@ -17,8 +18,18 @@ def booking_create(request):
         item_id = request.POST['item']
         slot_id = request.POST['slot']
         
+        slot = Slot.objects.get(id=slot_id)
+
+        if slot.available == 0:
+            messages.warning(request, 'Slot is full')
+            return redirect('booking_create')
+
         booking = Booking(user=request.user, item_id=item_id, slot_id=slot_id)
         booking.save()
+        slot.available = slot.available - 1
+        slot.save()
+        
+        messages.success(request, 'Booking done')
         return redirect('booking_list')
 
     items = Item.objects.filter(is_available=True)

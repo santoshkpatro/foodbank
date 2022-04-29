@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from core.models import Booking, Item, Slot
 
 
@@ -19,6 +19,7 @@ def booking_create(request):
         
         booking = Booking(user=request.user, item_id=item_id, slot_id=slot_id)
         booking.save()
+        return redirect('booking_list')
 
     items = Item.objects.filter(is_available=True)
     slots = Slot.objects.filter(is_active=True)

@@ -41,7 +41,8 @@ class Booking(models.Model):
         (0, 'received'),
         (1, 'preparing'),
         (2, 'complete'),
-        (3, 'cancelled')
+        (3, 'cancelled'),
+        (4, 'collect your order')
     )
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)

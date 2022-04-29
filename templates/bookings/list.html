@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1>Bookings</h1>
+    {% for booking in bookings %}
+    <div class="card my-5">
+        <div class="card-body">
+            <h4>Item - {{ booking.item.name }}</h4>
+            <p>Status - {{ booking.get_status_display }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

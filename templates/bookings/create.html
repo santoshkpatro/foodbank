@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1>Create Booking</h1>
+    <form action="{% url 'booking_create' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="" class="Select Item">Select Item</label>
+            <select class="form-select" aria-label="Default select example" name="item">
+                <option selected>Open this to select item</option>
+                {% for item in items %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="Select Item">Select Slot</label>
+            <select class="form-select" aria-label="Default select example" name="slot">
+                <option selected>Open this to select slot</option>
+
+                {% for slot in slots %}
+                <option value="{{ slot.id }}">{{ slot.start_time }} - {{ slot.end_time }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Book</button>
+    </form>
+</div>
+{% endblock %}

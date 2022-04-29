@@ -47,7 +47,8 @@ class Booking(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     slot = models.ForeignKey(Slot, on_delete=models.SET_NULL, null=True)
-    item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
+    item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True, related_name='bookings')
+    additional_item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True, blank=True, related_name='addtional_bookings')
     status = models.IntegerField(default=0, choices=STATUS_CHOICES)
     is_active = models.BooleanField(default=True)
     

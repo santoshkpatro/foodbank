@@ -17,6 +17,7 @@ def booking_create(request):
     if request.method == 'POST':
         item_id = request.POST['item']
         slot_id = request.POST['slot']
+        additional_item_id = request.POST.get('additional_item_id', None)
         
         slot = Slot.objects.get(id=slot_id)
 
@@ -24,7 +25,7 @@ def booking_create(request):
             messages.warning(request, 'Slot is full')
             return redirect('booking_create')
 
-        booking = Booking(user=request.user, item_id=item_id, slot_id=slot_id)
+        booking = Booking(user=request.user, item_id=item_id, additional_item_id=additional_item_id, slot_id=slot_id)
         booking.save()
         slot.available = slot.available - 1
         slot.save()

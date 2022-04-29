@@ -7,7 +7,17 @@
         {% csrf_token %}
         <div class="mb-3">
             <label for="" class="Select Item">Select Item</label>
-            <select class="form-select" aria-label="Default select example" name="item">
+            <select class="form-select" aria-label="Default select example" name="item" required>
+                <option selected>Open this to select item</option>
+                {% for item in items %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="mb-3">
+            <label for="" class="Select Item">Select Additional Item</label>
+            <select class="form-select" aria-label="Default select example" name="addtional_item" required>
                 <option selected>Open this to select item</option>
                 {% for item in items %}
                 <option value="{{ item.id }}">{{ item.name }}</option>
@@ -17,7 +27,7 @@
 
         <div class="mb-3">
             <label for="" class="Select Item">Select Slot</label>
-            <select class="form-select" aria-label="Default select example" name="slot">
+            <select class="form-select" aria-label="Default select example" name="slot" required>
                 <option selected>Open this to select slot</option>
 
                 {% for slot in slots %}

@@ -1,8 +1,10 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from core.models import Booking, Item, Slot
 
 
+@login_required(login_url='index')
 def booking_list(request):
     bookings = Booking.objects.filter(user=request.user, is_active=True)
 
@@ -13,6 +15,7 @@ def booking_list(request):
     return render(request, 'bookings/list.html', context)
 
 
+@login_required(login_url='index')
 def booking_create(request):
     if request.method == 'POST':
         item_id = request.POST['item']
